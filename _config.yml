@@ -11,7 +11,7 @@ defaults:
       path: "" # an empty string here means all files in the project
     values:
       image:
-        path: /assets/skullsecurity.jpg
+        path: /assets/getout.jpg
         height: 100
         width: 100
 

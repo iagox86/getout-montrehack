@@ -2,7 +2,7 @@ require 'time'
 require 'yaml'
 require 'pp'
 
-BASE_URL = "https://www.skullsecurity.org"
+BASE_URL = "https://getout-montrehack.skullsecurity.org"
 
 POST = ARGV[0]
 
