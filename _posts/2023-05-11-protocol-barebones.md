@@ -1,12 +1,13 @@
 ---
-title: 'Protocol implementation (Ruby)'
+title: Protocol implementation (Ruby)
 author: ron
 categories:
 - hints
 layout: post
-date: '2023-01-10T10:07:16-08:00'
+date: '2023-05-11T16:03:51-07:00'
 permalink: "/protocol-implementation-ruby"
 featured: true
+
 ---
 
 This implements the protocol in Ruby, and is an exact copy of what I use in my

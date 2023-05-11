@@ -4,8 +4,9 @@ author: ron
 categories:
 - misc
 layout: post
-date: '2023-01-10T09:02:16-08:00'
+date: '2023-05-11T16:04:19-07:00'
 permalink: "/backup-plan"
+
 ---
 
 This is a guide on how to run the server locally, just in case the online

@@ -1,12 +1,13 @@
 ---
-title: 'Inspiration'
+title: Inspiration
 author: ron
 categories:
 - hints
 layout: post
-date: '2023-01-10T08:02:16-08:00'
+date: '2023-05-11T16:04:29-07:00'
 permalink: "/inspiration"
 featured: true
+
 ---
 
 This will link to detailed documentation and a write-up for the real-world

@@ -15,7 +15,6 @@ defaults:
         height: 100
         width: 100
 
-paginate: 20
 excerpt_separator: '<!--more-->'
 
 include:
@@ -47,7 +46,6 @@ collections:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-paginate
   - jekyll-sitemap
 
 feed:

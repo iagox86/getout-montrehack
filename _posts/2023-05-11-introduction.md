@@ -1,12 +1,13 @@
 ---
-title: 'Welcome to Get Out!'
+title: Welcome to Get Out!
 author: ron
 categories:
 - instructions
 layout: post
-date: '2023-01-10T10:02:16-08:00'
+date: '2023-05-11T16:04:46-07:00'
 permalink: "/welcome"
 featured: true
+
 ---
 
 Hello Montrehack!
