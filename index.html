@@ -9,6 +9,13 @@ guid: 'http://www.skullsecurity.org/'
 header: full
 ---
 
+
+<a href="/welcome">
+  <div style="margin: 20px; padding: 10px; background-color: red; width: fit-content; cursor: pointer">
+    <p><strong><em>Just starting? Click me for instructions!</em></p>
+  </div>
+</a>
+
 <!-- This loops through the paginated posts -->
 {% for post in paginator.posts %}
   {% include post-blurb.html post=post %}
