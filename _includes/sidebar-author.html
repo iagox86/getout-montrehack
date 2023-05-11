@@ -1,0 +1,48 @@
+{% assign author = site.authors | where: 'short_name', page.author %}
+
+{% if author and author[0] %}
+  <aside id="widget-author" class="widget">
+    <h3 class="widget-title"><a href="{{ author[0].url }}">{{ author[0].name }}</a></h3>
+
+    <div class="widget-body widget-author">
+      {% if author[0].email %}
+        <p>{{ author[0].email }}</p>
+      {% endif %}
+
+      {% if author[0].avatar %}
+        <p><img class="avatar" src="{{ author[0].avatar }}" /></p>
+      {% endif %}
+
+      {% for mastodon in author[0].mastodon %}
+        <span class="social-link"><a href="https://{{ mastodon.instance }}/@{{ mastodon.username }}"><img class="svg-icon-big" src="/assets/mastodon.svg" title="Mastodon: {{mastodon.username}} @ {{mastodon.instance}}"/></a></span>
+      {% endfor %}
+
+      {% for twitter in author[0].twitter %}
+        <span class="social-link"><a href="https://twitter.com/@{{ twitter }}"><img class="svg-icon-big" src="/assets/twitter.svg" title="Twitter: {{ twitter }}"/></a></span>
+      {% endfor %}
+
+      {% for github in author[0].github %}
+        <span class="social-link"><a href="https://github.com/{{ github }}"><img class="svg-icon-big" title="Github: {{ github }}" src="/assets/github.svg"/></a></span>
+      {% endfor %}
+
+      <p>Recent posts from {{ author[0].name }}:</p>
+
+      <ul>
+        {% assign recentPosts = site.posts | where: 'author', author[0].short_name %}
+        {% for post in recentPosts limit: 3 %}
+          <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </aside>
+{% else %}
+  <aside id="widget-about" class="widget">
+    <h3 class="widget-title">About SkullSecurity</h3>
+
+    <div class="widget-body widget-about">
+      <em>New here?</em>
+
+      <p><a href='/welcome'>Check out the welcome page!</a></p>
+    </div>
+  </aside>
+{% endif %}

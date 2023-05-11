@@ -1,0 +1,54 @@
+name: Get Out! (Montrehack)
+title: Get Out! (Montrehack)
+email: ron@skullsecurity.org
+description: Can you save mankind?
+url: "https://getout-montrehack.github.com" # the base hostname & protocol for your site, e.g. http://example.com
+logo: /assets/getout.jpg
+
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      image:
+        path: /assets/skullsecurity.jpg
+        height: 100
+        width: 100
+
+paginate: 20
+excerpt_separator: '<!--more-->'
+
+include:
+  - '_pages/'
+
+exclude:
+  - 'hooks/'
+  - '*.sh'
+  - 'README.md'
+  - 'TODO.md'
+  - 'templates/'
+  - 'tooling/'
+
+# Mastodon comment settings
+comments:
+  host: infosec.exchange
+  username: skullsecurity
+
+collections:
+  authors:
+    output: true
+  categories:
+    output: true
+  widgets:
+    output: true
+  posts:
+    output: true
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-sitemap
+
+feed:
+  path: /feed

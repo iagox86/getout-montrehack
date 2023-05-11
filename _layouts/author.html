@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<a href="/authors.html">Back to authors</a>
+
+<header class="entry-header">
+  <h1 class="entry-title">{{ page.name }}</h1>
+</header>
+
+<div class="entry-content" itemprop="articleBody">
+  {{ content }}
+</div>
+
+<hr />
+
+{% assign filtered_posts = site.posts | where: 'author', page.short_name %}
+{% for post in filtered_posts %}
+  {% include post-blurb.html post=post %}
+{% endfor %}

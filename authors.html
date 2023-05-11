@@ -1,0 +1,15 @@
+---
+layout: default
+title: Authors
+---
+<h1 class="entry-title">Authors</h1>
+
+{% assign authors = site.authors | sort: "name" %}
+
+{% for author in authors %}
+  <h2 class="entry-title"><a href="{{ author.url }}">{{ author.name }}</a></h2>
+
+  <div class="entry-content">
+    {{ author.excerpt }}
+  </div>
+{% endfor %}

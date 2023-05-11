@@ -1,0 +1,25 @@
+---
+layout: default
+---
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  {% include post-nav.html next=page.next previous=page.previous %}
+
+  <header class="entry-header">
+    <h1 class="entry-title" itemprop="name headline">{{ page.title }}</h1>
+  </header>
+
+  <div class="entry-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  <div class="entry-meta">
+    {% include post-date.html date=page.date %}
+
+    {% include post-categories.html categories=page.categories %}
+
+    {% include post-author.html short_name=page.author %}
+  </div>
+
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+  {% include post-nav.html next=page.next previous=page.previous %}
+</article>

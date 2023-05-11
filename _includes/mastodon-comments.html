@@ -1,0 +1,193 @@
+<!-- Comments from https://yidhra.farm/tech/jekyll/2022/01/03/mastodon-comments-for-jekyll.html -->
+<div id="comments" class="comments-area">
+  <h2 class="comments-title">Comments</h2>
+
+  <p>Join the conversation on <a class="link" href="https://{{ site.comments.host }}/@{{ site.comments.username }}/{{ page.comments_id }}">this Mastodon post</a> (replies will appear below)!</p>
+
+  <ol class="commentlist" id="comment-list">
+    Loading comments...
+  </ol>
+
+  <noscript><p>You need JavaScript to view the comments.</p></noscript>
+
+  <script src="/assets/js/purify.min.js"></script>
+  <script type="text/javascript">
+    function do_mastodon_emojis(text, emojis) {
+      emojis.forEach(({shortcode, static_url}) => {
+        text = text.replaceAll(`:${ shortcode }:`, `<img src="${ static_url }" title="${ shortcode }" class="mastodon-emoji" />`)
+      })
+      return text;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('https://{{ site.comments.host }}/api/v1/statuses/{{ page.comments_id }}/context')
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          if(!data['descendants'] || data['descendants'].length === 0) {
+            document.getElementById('comment-list').textContent = 'No comments';
+            return;
+          }
+
+          document.getElementById('comment-list').innerHTML = '';
+
+          var even_odd = 'odd';
+          var depths = {};
+          data['descendants'].forEach((reply) => {
+            // Figure out the depth
+            var depth = 1;
+            if(reply.in_reply_to_id && depths[reply.in_reply_to_id]) {
+              depth = depths[reply.in_reply_to_id] + 1;
+            }
+            depths[reply.id] = depth;
+
+            var account_display_name = do_mastodon_emojis(reply.account.display_name, reply.account.emojis);
+            //var account_url = reply.account.url;
+            var cw;
+            if(reply.spoiler_text) {
+              cw = do_mastodon_emojis(reply.spoiler_text, reply.emojis);
+            }
+
+            // This might eventually stop working, but for now we can remove the @skullsecurity part of the reply
+            var reply_content = do_mastodon_emojis(reply.content.replaceAll('@<span>{{site.comments.username}}</span>', ''), reply.emojis);
+
+            var li = document.createElement('li');
+            li.className = `comment ${ even_odd } thread-${ even_odd } depth-${ depth }`;
+            document.getElementById('comment-list').appendChild(li);
+
+            var replyParagraph = document.createElement('p');
+            replyParagraph.className = 'comment-reply';
+            li.append(replyParagraph);
+
+            // This reply link was confusing
+            // var replyLink = document.createElement('a');
+            // replyLink.rel = 'nofollow';
+            // replyLink.className = 'comment-reply-link';
+            // replyLink.href = reply.uri;
+            // replyLink.textContent = 'Reply';
+            // replyLink.target = '_blank';
+            // replyParagraph.append(replyLink);
+
+            var poster = document.createElement('header');
+            poster.className = 'comment-meta comment-author vcard';
+            li.append(poster);
+
+            var avatar = document.createElement('img');
+            avatar.src = reply.account.avatar_static;
+            avatar.srcset = reply.account.avatar_static;
+            avatar.alt = 'Avatar';
+            avatar.className = 'avatar avatar-64 photo';
+            avatar.height = 64;
+            avatar.width = 64;
+            avatar.loading = 'lazy';
+            poster.append(avatar);
+
+            var user_link = document.createElement('a');
+            user_link.href = reply.account.url;
+            user_link.target = '_blank';
+            poster.append(user_link);
+
+            var cite = document.createElement('cite');
+            cite.className = 'fn comment-author';
+            cite.innerHTML = DOMPurify.sanitize(account_display_name, { USE_PROFILES: { html: true } });
+            user_link.append(cite);
+
+            var comment_link = document.createElement('a');
+            comment_link.href = reply.uri;
+            comment_link.target = '_blank';
+            poster.append(comment_link);
+
+            var time = document.createElement('time');
+            time.dateTime = reply.created_at;
+            time.className = 'comment-time';
+            time.textContent = new Date(reply.created_at).toLocaleString('en-us', {dateStyle: 'full', timeStyle: 'long'});
+            time.title = reply.created_at;
+            comment_link.append(time);
+
+            var likes_retoots = document.createElement('div');
+            likes_retoots.className = 'likes-retoots';
+            poster.append(likes_retoots);
+
+            // *** Replies
+            var replies = document.createElement('span');
+            replies.className = 'likes-retoots-pair';
+            likes_retoots.append(replies);
+
+            var replies_icon = document.createElement('span');
+            replies_icon.className = 'genericon genericon-reply';
+            replies_icon.title = `${ reply.replies_count } replies_icon`;
+            replies.append(replies_icon);
+
+            var replies_count = document.createElement('span');
+            replies_count.textContent = reply.replies_count;
+            replies_count.title = `${ reply.replies_count } replies`;
+            replies.append(replies_count);
+
+            // *** Retoots
+            var retoots = document.createElement('span');
+            retoots.className = 'likes-retoots-pair';
+            likes_retoots.append(retoots);
+
+            var retoots_icon = document.createElement('span');
+            retoots_icon.className = 'genericon genericon-refresh';
+            retoots_icon.title = `${ reply.reblogs_count } retoots`;
+            retoots.append(retoots_icon);
+
+            var retoots_count = document.createElement('span');
+            retoots_count.textContent = reply.reblogs_count;
+            retoots_count.title = 'Retoots';
+            retoots_count.title = `${ reply.reblogs_count } retoots`;
+            retoots.append(retoots_count);
+
+            // *** Likes
+            var likes = document.createElement('span');
+            likes.className = 'likes-retoots-pair';
+            likes_retoots.append(likes);
+
+            var likes_icon = document.createElement('span');
+            likes_icon.className = 'genericon genericon-heart';
+            likes_icon.title = `${ reply.favourites_count } favourites`;
+            likes.append(likes_icon);
+
+            var likes_count = document.createElement('span');
+            likes_count.textContent = reply.favourites_count;
+            likes_count.title = `${ reply.favourites_count } favourites`;
+            likes.append(likes_count);
+
+
+            // Needs to go above the cwElement
+            var contentElement = document.createElement('section')
+
+            if(cw) {
+              var cwElement = document.createElement('section');
+
+              cwElement.className = 'cw comment-content comment'
+              cwElement.innerHTML = `CW: ${ DOMPurify.sanitize(cw, { USE_PROFILES: { html: true } } ) } (click to reveal)`;
+              cwElement.addEventListener('click', () => {
+                contentElement.style.display = 'Block';
+              });
+              li.appendChild(cwElement);
+            }
+
+            contentElement.className = 'comment-content comment'
+            contentElement.innerHTML = DOMPurify.sanitize(reply_content, { USE_PROFILES: { html: true } });
+            if(cw) {
+              contentElement.style.display = 'None';
+            }
+            li.appendChild(contentElement);
+
+            if(even_odd === 'odd') {
+              even_odd = 'even';
+            } else {
+              even_odd = 'odd';
+            }
+          });
+        })
+        .catch(function(error) {
+          document.getElementById('comment-list').textContent = `Error fetching comments from Mastodon: ${ error }`;
+        });
+    })
+  </script>
+</div>
+
