@@ -34,12 +34,21 @@ Here are the three challenges:
 
 ## Debug symbols
 
-I've included binaries both with and without debug symbols - choose your own
-difficulty! Symbols shouldn't affect my exploitation (at least, my exploits
-work against binaries both with and without symbols).
+I've included binaries both with and without debug symbols with each challenge -
+choose your own difficulty! Symbols shouldn't affect my exploitation (at
+least, my exploits work against binaries both with and without symbols).
 
 Because we only have limited time, I'd strongly suggest using the versions
 *with* debug symbols.
+
+## Hints
+
+I've included a bunch of hints in a column on the right. Some of the hints
+verge on spoilers, especially for the earlier levels. I try to outline at the
+top of the hint just how spoilery it's going to be.
+
+We have 3 hours to do something that I designed to take up to 48 hours, so
+you won't be judged at all for using all the hints!
 
 ## Target + backup plan
 
