@@ -32,23 +32,23 @@ Here are the three challenges:
 * [Part 2 - Get token](/part2) - bypass authentication checks
 * [Part 3 - Apply](/part3) - exploit a vulnerability
 
-## Debug symbols
+## Hints + advice
 
-I've included binaries both with and without debug symbols with each challenge -
-choose your own difficulty! Symbols shouldn't affect my exploitation (at
-least, my exploits work against binaries both with and without symbols).
+In the original CTF, players had a total of 48 hours. We only have three! So
+I provided a bunch of info to help you jump ahead. My recommendations:
 
-Because we only have limited time, I'd strongly suggest using the versions
-*with* debug symbols.
-
-## Hints
-
-I've included a bunch of hints in a column on the right. Some of the hints
-verge on spoilers, especially for the earlier levels. I try to outline at the
-top of the hint just how spoilery it's going to be.
-
-We have 3 hours to do something that I designed to take up to 48 hours, so
-you won't be judged at all for using all the hints!
+* If you want a pure experience, get the challenges without debug symbols and
+  don't look at any of the hints on the right
+* If you want a bit of a leg-up, grab the versions of the executables with
+  debug symbols (files that end in `.d`)
+* If you want a bit of help getting started, read the debugging/forking hints
+* If you want a better idea of what you're looking for, read the "inspiration"
+  section on the right
+* If you get stuck, read the hints for the appropriate level
+* If you want to jump ahead a bit more, grab the source code for the appropriate
+  level
+* If you want to jump ahead a lot, grab the protocol documentation and barebones
+  implementation
 
 ## Target + backup plan
 
