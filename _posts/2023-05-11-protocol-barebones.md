@@ -1,5 +1,5 @@
 ---
-title: Protocol implementation (Ruby)
+title: "Protocol implementation (Ruby) [big hint]"
 author: ron
 categories:
 - hints

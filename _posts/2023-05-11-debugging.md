@@ -1,5 +1,5 @@
 ---
-title: Debugging
+title: "Debugging [small hint]"
 author: ron
 categories:
 - hints

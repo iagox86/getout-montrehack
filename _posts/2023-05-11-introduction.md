@@ -16,8 +16,8 @@ Get Out are a series of three challenges from BSides San Francisco. You're
 going to be reverse engineering an RPC server with three different services!
 This is heavily based on a real-life project that the author (Ron) worked on.
 
-Note that this is supposed to be difficult! I'll post hints and solutions
-throughout the evening. You can choose how much help you want!
+Note that this is supposed to be difficult! Since we only have 3 hours, I
+provided a bunch of hints on the right, feel free to use them (if you want)!
 
 You can access all the challenges, hints, or solutions on the sidebar on the
 right.

@@ -1,5 +1,5 @@
 ---
-title: Inspiration
+title: "Inspiration [small hint]"
 author: ron
 categories:
 - hints
