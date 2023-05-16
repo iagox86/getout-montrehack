@@ -61,5 +61,7 @@ Ncat: Version 7.93 ( https://nmap.org/ncat )
 Ncat: Connected to 192.155.82.12:1337.
 ```
 
+The important part is that it says "connected" or "connection open" - it'll vary depending on your netcat version (I'm using `ncat`).
+
 If for some reason that server goes down or doesn't work, you can run the
 server locally (on Docker) by following the instructions [here](/backup-plan).
