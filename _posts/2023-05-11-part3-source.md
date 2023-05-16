@@ -5,7 +5,7 @@ categories:
 - hints
 layout: post
 date: '2023-05-11T16:03:36-07:00'
-permalink: "/part1-source"
+permalink: "/part3-source"
 featured: true
 
 ---
